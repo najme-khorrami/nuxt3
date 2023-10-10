@@ -1,4 +1,8 @@
 <template>
+    <Head>
+        <Title>all products</Title>
+        <Meta name="description" content="full of products" />
+    </Head>
     <div class="grid gap-4 grid-cols-4 my-6 mx-4">
         <div v-for="product in products" :key="product.id" class="w-full h-60 border shadow-lg rounded-md p-3 relative">
             <img :src="product.image" class="h-1/2 mx-auto" alt="">
@@ -8,18 +12,8 @@
     </div>
 </template>
 
-<script>
-    export default {
-        data() {
-            return {
-                products: []
-            }
-        },
-        created() {
-            this.products =  useFetch('https://fakestoreapi.com/products')
-            this.products = this.products.data.value
-        }      
-    }
+<script setup>
+    const { data: products } = useFetch('https://fakestoreapi.com/products')
 </script>
 
 <style lang="scss" scoped>
